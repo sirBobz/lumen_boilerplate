@@ -23,14 +23,17 @@ class RequestResponseLogger
     public function terminate($request, $response)
     {
         //Log All Requests and Responses 
-        Log::info('requests', [
+         Log::info('requests', [
             'request' => $request->all(),
             'User' => "API User",
-            'IP Address' => $request->getClientIp(),
-            'Method' => $request->getMethod(),
+            'user-Agent' => $request->header('User-Agent'),
+            'Host' => $request->header('Host'),
+            'Content-Type' => $request->header('Content-Type'),
+            'IP address' => $request->getClientIp(),
+            'method' => $request->getMethod(),
             'URL' => $request->fullUrl(),
             'response Code' => $response->getStatusCode(),
-        ]);    
+        ]);       
     
     }
 }

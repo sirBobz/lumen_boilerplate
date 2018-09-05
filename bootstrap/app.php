@@ -19,6 +19,7 @@ try {
 |
 */
 
+
 $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
@@ -27,6 +28,7 @@ $app->withFacades();
 
 $app->withEloquent();
 
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
