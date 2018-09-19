@@ -23,7 +23,7 @@ class TransactionStatusController extends Controller
                     'message' => $callbackData->Result->ResultParameters->ResultParameter[4]->Value ?? NULL,
                     'account_name' => $callbackData->Result->ResultParameters->ResultParameter[5]->Value ?? NULL,
                     'currency' => $callbackData->Result->ResultParameters->ResultParameter[6]->Value ?? NULL,
-                    'status' => 4,
+                    'status' => 5,
                    ]);
      }
 

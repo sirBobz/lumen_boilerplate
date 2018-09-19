@@ -22,7 +22,7 @@ class BusinessToBusinessController extends Controller
                     'customer_name' => $callbackData->Result->ResultParameters->ResultParameter[5]->Value ?? NULL,
                     'account_balance' => $callbackData->Result->ResultParameters->ResultParameter[3]->Value ?? NULL,
                     'currency' => $callbackData->Result->ResultParameters->ResultParameter[0]->Value ?? NULL,
-                    'status' => 4,
+                    'status' => 5,
                    ]);
     }
   

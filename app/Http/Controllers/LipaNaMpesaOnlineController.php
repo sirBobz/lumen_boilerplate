@@ -17,7 +17,7 @@ class LipaNaMpesaOnlineController extends Controller
                     'result_desc' => $callbackData->Body->stkCallback->ResultDesc,
                     'third_party_trans_id' => $callbackData->Body->stkCallback->CallbackMetadata->Item[1]->Value ?? $callbackData->Body->stkCallback->CheckoutRequestID ?? NULL,
                     'transaction_time' => date_format(date_create($callbackData->Body->stkCallback->CallbackMetadata->Item[3]->Value ?? NULL), "Y-m-d H:i:s") ?? NULL,
-                    'status' => 4,
+                    'status' => 5,
                    ]);
      }
 

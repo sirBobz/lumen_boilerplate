@@ -96,7 +96,7 @@ class BusinessToCustomerController extends Controller
                       'customer_name' => $ReceiverPartyPublicName,
                       'third_party_trans_id' => $Json_result->Result->TransactionID,
                       'transaction_time' => date_format(date_create($TransactionCompletedDateTime), "Y-m-d H:i:s"),
-                      'status' => 4,
+                      'status' => 5,
                   ]);
 
     }

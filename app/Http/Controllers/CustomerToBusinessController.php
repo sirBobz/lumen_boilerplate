@@ -35,7 +35,7 @@ class CustomerToBusinessController extends Controller
            $transaction->org_id = OrganizationAccount::where('account', $request->BusinessShortCode)->where('service_id', Service::where('name', '=', 'mpesa_c2b')->value('id'))->value('org_id');
            $transaction->service_id = Service::where('name', '=', 'mpesa_c2b')->value('id');
            $transaction->request_id = $this->request_id;
-           $transaction->status = 4;
+           $transaction->status = 5;
            $transaction->save();
 
 

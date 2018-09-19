@@ -95,6 +95,6 @@ class Handler extends ExceptionHandler
                    'request_data' => []
             ], 405 );
         }
-        return parent::render($request, $e);
+        return parent::render($request, $exception);
     }
 }

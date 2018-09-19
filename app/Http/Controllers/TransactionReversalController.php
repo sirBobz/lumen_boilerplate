@@ -16,7 +16,7 @@ class TransactionReversalController extends Controller
                     'result_desc' => $callbackData->Result->ResultDesc,
                     'third_party_trans_id' => $callbackData->Result->TransactionID ?? $callbackData->Result->ConversationID ?? NULL,
                     'transaction_time' => date("Y-m-d H:i:s"),
-                    'status' => 4,
+                    'status' => 5,
                    ]);
    }
 }
