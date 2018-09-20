@@ -23,6 +23,8 @@ $router->group(['prefix' => 'api/v1'], function() use ($router) {
 
     $router->post('/c2b/payment-notification','CustomerToBusinessController@index');
 
+    $router->post('/c2b/payment-validation','CustomerToBusinessController@validation');
+
     $router->post('/stk-push/payment-notification','LipaNaMpesaOnlineController@index');
 
     $router->post('/account-balance/notification','AccountBalanceController@index');
