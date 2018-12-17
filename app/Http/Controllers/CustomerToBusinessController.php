@@ -51,10 +51,17 @@ class CustomerToBusinessController extends Controller
            $transaction->org_id = $this->getOrganizationID($this->request);
            $transaction->service_id = $this->getServiceID("mpesa_c2b");
            $transaction->request_id = $this->request_id;
+           $transaction->result_desc = "Processed Sucessfully";
            $transaction->status = 5;
            $transaction->save();
 
-           echo '{"ResultCode":0,"ResultDesc":"Confirmation recieved successfully"}';
+           $response = array
+               (
+                  'ResultCode' => 0,
+                  'ResultDesc' => "Confirmation recieved successfully"
+               );
+           response()->json($response, 200)->send();
+
       } 
       catch (Exception $exc) 
       {
@@ -75,15 +82,20 @@ class CustomerToBusinessController extends Controller
     {
         $this->checkIfAccountHasFloat();
 
-        $validation_url = Callback::where('service_id', '=', $this->getServiceID("mpesa_c2b"))
-                            ->where('org_id', $this->getOrganizationID($this->request))
-                            ->value('validation_url');
+        $validation_url = Callback::where('org_id', $this->getOrganizationID($this->request))
+                                  ->where('service_id', '=', $this->getServiceID("mpesa_c2b"))
+                                  ->value('validation_url');
                     
         if ($validation_url === NULL) 
           {
 
-            echo '{"ResultCode":0,"ResultDesc":"Validation passed successfully"}';
+                $response = array
+                    (
+                      'ResultCode' => 0,
+                      'ResultDesc' => "Validation passed successfully",
+                    );
 
+                response()->json($response, 200)->send();
           }
         else
           {
@@ -110,14 +122,14 @@ class CustomerToBusinessController extends Controller
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $validation_url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json')); 
-
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($this->request));
-
-        echo $curl_response = curl_exec($curl);
+        $curl_response = curl_exec($curl);
 
         Log::info("Data " . json_encode($this->request) . " URL " . $validation_url . " Response " . $curl_response);
+
+       return $curl_response;
 
      }
     catch(Exception $exc)

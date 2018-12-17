@@ -13,17 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
+//C2B urls
 
+      $router->post('/c2b/payment-notification','CustomerToBusinessController@index');
+
+      $router->post('/c2b/payment-validation','CustomerToBusinessController@validation');
 
 
 
 $router->group(['prefix' => 'api/v1'], function() use ($router) {
   
     $router->post('/b2c/payment-notification','BusinessToCustomerController@index');
-
-    $router->post('/c2b/payment-notification','CustomerToBusinessController@index');
-
-    $router->post('/c2b/payment-validation','CustomerToBusinessController@validation');
 
     $router->post('/stk-push/payment-notification','LipaNaMpesaOnlineController@index');
 
